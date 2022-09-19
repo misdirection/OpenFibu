@@ -4,9 +4,9 @@ using System.Linq.Expressions;
 
 namespace OpenFibu.Data.Mock;
 
-public sealed class BuchungenMockRepo : IRepository<Geschaeftsvorfall>, IReadRepository<Geschaeftsvorfall>
+public sealed class GeschaeftsvorfallMockRepo : IRepository<Geschaeftsvorfall>, IReadRepository<Geschaeftsvorfall>
 {
-    public BuchungenMockRepo() => Seed();
+    public GeschaeftsvorfallMockRepo() => Seed();
 
     private List<Geschaeftsvorfall> _geschaeftsvorfaelle = new();
 

@@ -41,8 +41,8 @@ public partial class App : System.Windows.Application
     private static IServiceProvider ConfigureServices()
     {
         var services = new ServiceCollection();
-        services.AddTransient<IRepository<OpenFibu.Domain.Entities.Journal.Geschaeftsvorfall>, GeschaeftsvorfallRepository>();
-        services.AddTransient<IReadRepository<OpenFibu.Domain.Entities.Journal.Geschaeftsvorfall>, GeschaeftsvorfallRepository>();
+        services.AddSingleton<IRepository<Domain.Entities.Journal.Geschaeftsvorfall>, GeschaeftsvorfallMockRepo>();
+        services.AddTransient<IReadRepository<Domain.Entities.Journal.Geschaeftsvorfall>, GeschaeftsvorfallMockRepo>();
         services.AddTransient<IRepository<Steuerschluessel>, SteuerschluesselMockRepo>();
         services.AddMediatR(typeof(GetAllSteuerschluesselQuery));
         services.AddSingleton<IViewModelFactory, ViewModelFactory>();
