@@ -11,10 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenFibu.Data", "OpenFibu.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenFibu.Wpf", "OpenFibu.Wpf\OpenFibu.Wpf.csproj", "{D7426DD3-63A2-46BC-8445-447A65C55C41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenFibu.API", "OpenFibu.API\OpenFibu.API.csproj", "{F4A41A22-DA49-4E56-AD22-42414DDEB195}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenFibu.Shared", "OpenFibu.Shared\OpenFibu.Shared.csproj", "{31C46B5E-27A5-4158-9A85-8FC4B7DA745F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,14 +33,6 @@ Global
 		{D7426DD3-63A2-46BC-8445-447A65C55C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7426DD3-63A2-46BC-8445-447A65C55C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7426DD3-63A2-46BC-8445-447A65C55C41}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31C46B5E-27A5-4158-9A85-8FC4B7DA745F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31C46B5E-27A5-4158-9A85-8FC4B7DA745F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31C46B5E-27A5-4158-9A85-8FC4B7DA745F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31C46B5E-27A5-4158-9A85-8FC4B7DA745F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F4A41A22-DA49-4E56-AD22-42414DDEB195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4A41A22-DA49-4E56-AD22-42414DDEB195}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4A41A22-DA49-4E56-AD22-42414DDEB195}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4A41A22-DA49-4E56-AD22-42414DDEB195}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
