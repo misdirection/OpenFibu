@@ -9,14 +9,12 @@ namespace OpenFibu.Data.RavenDb
 
         private static IDocumentStore CreateDocumentStore()
         {
-            string serverURL = "https://a.misdirectionr.ravendb.community:8080";
-            string databaseName = "Finanzbuchhaltung";
-            X509Certificate2 x509Certificate = new("C:\\Users\\misdi\\Desktop\\misdirectionr.Cluster.Settings\\admin.client.certificate.misdirectionr.pfx");
             IDocumentStore documentStore = new DocumentStore
             {
-                Certificate = x509Certificate,
-                Urls = new[] { serverURL },
-                Database = databaseName
+                //Certificate = x509Certificate,
+                Urls = new[] { "http://localhost:8080" },
+                Database = "OpenFibu",
+                
             };
 
             documentStore.Initialize();

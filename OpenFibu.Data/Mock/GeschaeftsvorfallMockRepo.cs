@@ -1,5 +1,7 @@
+using OpenFibu.Application.DTO;
 using OpenFibu.Application.Interfaces;
 using OpenFibu.Domain.Entities.Journal;
+using Raven.Client.Documents.Linq;
 using System.Linq.Expressions;
 
 namespace OpenFibu.Data.Mock;
@@ -41,6 +43,10 @@ public sealed class GeschaeftsvorfallMockRepo : IRepository<Geschaeftsvorfall>, 
         Expression<Func<Geschaeftsvorfall, bool>> expression,
         params Expression<Func<Geschaeftsvorfall, object>>[] includeProperties)
     {
-        return await Task.FromResult(_geschaeftsvorfaelle.Where(expression.Compile()));
+        var result = _geschaeftsvorfaelle.Where(expression.Compile());
+
+        return result.Any()
+            ? await Task.FromResult(result)
+            : await Task.FromResult(Enumerable.Empty<Geschaeftsvorfall>());
     }
 }

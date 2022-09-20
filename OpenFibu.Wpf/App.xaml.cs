@@ -42,7 +42,7 @@ public partial class App : System.Windows.Application
     {
         var services = new ServiceCollection();
         services.AddSingleton<IRepository<Domain.Entities.Journal.Geschaeftsvorfall>, GeschaeftsvorfallMockRepo>();
-        services.AddTransient<IReadRepository<Domain.Entities.Journal.Geschaeftsvorfall>, GeschaeftsvorfallMockRepo>();
+        services.AddSingleton<IReadRepository<Domain.Entities.Journal.Geschaeftsvorfall>, GeschaeftsvorfallMockRepo>();
         services.AddTransient<IRepository<Steuerschluessel>, SteuerschluesselMockRepo>();
         services.AddMediatR(typeof(GetAllSteuerschluesselQuery));
         services.AddSingleton<IViewModelFactory, ViewModelFactory>();
