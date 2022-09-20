@@ -1,10 +1,6 @@
-﻿namespace OpenFibu.Domain.Entities.Journal;
+﻿using OpenFibu.Domain.Shared.Enums;
 
-public enum SollHaben
-{
-    Soll,
-    Haben
-}
+namespace OpenFibu.Domain.Entities.Journal;
 
 public class Buchung
 {
