@@ -2,18 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:OpenFibu.Wpf"
-             xmlns:gv="clr-namespace:OpenFibu.Wpf.Geschaeftsvorfall"
-             xmlns:stamm="clr-namespace:OpenFibu.Wpf.Stammdaten"
-             xmlns:buchung="clr-namespace:OpenFibu.Wpf.Buchung">
+             xmlns:vk="clr-namespace:OpenFibu.Wpf.Vorkontierung"
+             xmlns:stamm="clr-namespace:OpenFibu.Wpf.Stammdaten">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type gv:GeschaeftsvorfallerfassungViewModel}">
-            <gv:GeschaeftsvorfallerfassungView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type gv:GeschaeftsvorfaelleViewModel}">
-            <gv:GeschaeftsvorfaelleView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type buchung:BuchungserfassungViewModel}">
-            <buchung:BuchungserfassungView/>
+        <DataTemplate DataType="{x:Type vk:VorkontierungserfassungViewModel}">
+            <vk:VorkontierungView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type stamm:SteuerschluesselViewModel}">
             <stamm:SteuerschluesselView/>

@@ -1,6 +1,8 @@
-﻿namespace OpenFibu.Domain.Entities;
+﻿using OpenFibu.Shared;
 
-public class Steuerschluessel
+namespace OpenFibu.Domain.Stammdaten.Entities;
+
+public class Steuerschluessel :  Entity, IAggregateRoot
 {
     public Steuerschluessel() { }
 

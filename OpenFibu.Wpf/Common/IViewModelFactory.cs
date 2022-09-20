@@ -4,7 +4,7 @@ namespace OpenFibu.Wpf.Common;
 
 public enum ViewModelType
 {
-    Geschaeftsvorfaelle,
+    Vorkontierungen,
     Steuerschluessel,
     Konten
 }

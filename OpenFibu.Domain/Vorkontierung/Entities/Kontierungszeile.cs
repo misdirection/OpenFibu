@@ -1,9 +1,10 @@
 using OpenFibu.Domain.Shared.Enums;
 using OpenFibu.Domain.Stammdaten.Entities;
+using OpenFibu.Shared;
 
-namespace OpenFibu.Domain.Journal.Entities;
+namespace OpenFibu.Domain.Vorkontierung.Entities;
 
-public class Kontierungszeile
+public class Kontierungszeile : Entity
 {
     public static Kontierungszeile Erstellen(decimal betrag, string kontoId, SollHaben sollHaben,
         Steuerschluessel steuerschluessel)
@@ -18,7 +19,7 @@ public class Kontierungszeile
         Steuerschluessel = steuerschluessel;
     }
 
-    public string Id { get; set; }
+    public string? Id { get; set; }
     public decimal Betrag { get; set; }
     public string KontoId { get; set; }
     public SollHaben SollHaben { get; set; }

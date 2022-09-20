@@ -7,19 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <DataGrid ItemsSource="{Binding Geschaeftsvorfaelle}" AutoGenerateColumns="False" IsReadOnly="True">
-            <DataGrid.Columns>
+        <DataGrid ItemsSource="{Binding Vorkontierungen}" AutoGenerateColumns="True" IsReadOnly="True" 
+                  SelectedItem="{Binding Vorkontierung, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }"
+                  SelectionMode="Single" SelectionUnit="FullRow" >
+            <!--<DataGrid.Columns>
                 <DataGridTextColumn Header="Belegnummer" Binding="{Binding Belegnummer}" />
                 <DataGridTextColumn Header="Belegdatum" Binding="{Binding Belegdatum}" />
                 <DataGridTextColumn Header="Buchungsdatum" Binding="{Binding Buchungsdatum}" />
-            </DataGrid.Columns>
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <DataGrid ItemsSource="{Binding Buchungen}" />
-                    </Grid>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
+            </DataGrid.Columns>-->
         </DataGrid>
         <StackPanel Orientation="Horizontal">
             <Button Content="Speichern" Command="{Binding SpeichernCommand}"/>
@@ -27,11 +22,11 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Belegnummer" />
-            <TextBox Text="{Binding Belegnummer, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="100" />
+            <TextBox Text="{Binding Vorkontierung.Belegnummer, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="100" />
             <Label Content="Belegdatum" />
-            <DatePicker SelectedDate="{Binding Belegdatum, Mode=TwoWay}" Width="100"/>
+            <DatePicker SelectedDate="{Binding Vorkontierung.Belegdatum, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="100"/>
             <Label Content="Buchungsdatum" />
-            <DatePicker SelectedDate="{Binding Buchungsdatum, Mode=TwoWay}" Width="100" />
+            <DatePicker SelectedDate="{Binding Vorkontierung.Buchungsdatum, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="100" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Width="130" Content="Soll" />
@@ -48,8 +43,10 @@
         <StackPanel Orientation="Horizontal">
             <Label Width="130" Content="Betrag" />
             <TextBox Text="{Binding Betrag, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="100" />
-        </StackPanel>            <StackPanel Orientation="Horizontal">
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
             <Label Width="130" Content="Buchungstext" />
             <TextBox Text="{Binding Buchungstext, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="450" />
-        </StackPanel>    </StackPanel>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

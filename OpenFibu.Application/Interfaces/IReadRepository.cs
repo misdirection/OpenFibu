@@ -1,10 +1,11 @@
 ﻿using System.Linq.Expressions;
-using OpenFibu.Domain.Entities.Journal;
+using OpenFibu.Domain.Journal.Entities;
 
-namespace OpenFibu.Application.Interfaces
+namespace OpenFibu.Application.Interfaces;
+
+public interface IReadRepository<T>
 {
-    public interface IReadRepository<T>
-    {
-        Task<IEnumerable<Geschaeftsvorfall>> FindByConditionAsync(Expression<Func<Geschaeftsvorfall, bool>> expression, params Expression<Func<Geschaeftsvorfall, object>>[] includeProperties);
-    }
+    Task<T> GetByIdAsync(string id);
+    Task<IEnumerable<T>> GetAllAsync();
+    Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includeProperties);
 }

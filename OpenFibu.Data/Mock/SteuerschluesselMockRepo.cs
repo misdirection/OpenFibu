@@ -1,10 +1,10 @@
 using OpenFibu.Application.Interfaces;
-using OpenFibu.Domain.Entities;
 using System.Linq.Expressions;
+using OpenFibu.Domain.Stammdaten.Entities;
 
 namespace OpenFibu.Data.Mock;
 
-public sealed class SteuerschluesselMockRepo : IRepository<Steuerschluessel>
+public sealed class SteuerschluesselMockRepo 
 {
     private List<Steuerschluessel> _steuerschluessel = new();
     public IEnumerable<Steuerschluessel> GetAll(Expression<Func<Steuerschluessel, bool>>? predicate = null)

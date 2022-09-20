@@ -15,16 +15,16 @@ public partial class MainWindowViewModel : ObservableObject
     public MainWindowViewModel(IViewModelFactory factory)
     {
         _factory = factory;
-        _currentView = _factory.Create(ViewModelType.Geschaeftsvorfaelle);
+        _currentView = _factory.Create(ViewModelType.Vorkontierungen);
     }
 
     [RelayCommand]
     public void ShowGeschaeftsvorfaelle() 
-        => CurrentView = _factory.Create(ViewModelType.Geschaeftsvorfaelle);
+        => CurrentView = _factory.Create(ViewModelType.Vorkontierungen);
 
     [RelayCommand]
     public void ShowSteuerschluessel()
-    => CurrentView = _factory.Create(ViewModelType.Steuerschluessel);
+        => CurrentView = _factory.Create(ViewModelType.Steuerschluessel);
 
     [RelayCommand]
     public void ShowJournal()

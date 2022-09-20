@@ -1,29 +1,36 @@
 ﻿using Raven.Client.Documents;
-using System.Security.Cryptography.X509Certificates;
+using Raven.Client.Documents.Operations.Revisions;
 
-namespace OpenFibu.Data.RavenDb
+namespace OpenFibu.Data.RavenDb;
+
+public class DocumentStoreHolder
 {
-    public class DocumentStoreHolder
+    private static readonly Lazy<IDocumentStore> _store = new(CreateDocumentStore);
+
+    private static IDocumentStore CreateDocumentStore()
     {
-        private static readonly Lazy<IDocumentStore> _store = new(CreateDocumentStore);
-
-        private static IDocumentStore CreateDocumentStore()
+        IDocumentStore documentStore = new DocumentStore
         {
-            IDocumentStore documentStore = new DocumentStore
-            {
-                //Certificate = x509Certificate,
-                Urls = new[] { "http://localhost:8080" },
-                Database = "OpenFibu",
+            //Certificate = x509Certificate,
+            Urls = new[] { "http://localhost:8080" },
+            Database = "OpenFibu",
                 
-            };
-
-            documentStore.Initialize();
-            return documentStore;
-        }
-
-        public static IDocumentStore Store
+        };
+        var myRevisionsConfiguration = new RevisionsConfiguration
         {
-            get { return _store.Value; }
-        }
+            Default = new RevisionsCollectionConfiguration
+            {
+                Disabled = false
+            }
+        };
+        documentStore.Initialize();
+        // var revisionsConfigurationOperation = new ConfigureRevisionsOperation(myRevisionsConfiguration);
+        // Store.Maintenance.Send(revisionsConfigurationOperation);
+        return documentStore;
+    }
+
+    public static IDocumentStore Store
+    {
+        get { return _store.Value; }
     }
 }

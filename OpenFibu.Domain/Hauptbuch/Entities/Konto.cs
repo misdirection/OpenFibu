@@ -1,8 +1,9 @@
-﻿using OpenFibu.Domain.Entities.Journal;
+﻿using OpenFibu.Domain.Shared.Enums;
+using OpenFibu.Shared;
 
-namespace OpenFibu.Domain.Entities.Hauptbuch;
+namespace OpenFibu.Domain.Hauptbuch.Entities;
 
-public class Konto
+public class Konto : Entity, IAggregateRoot
 {
     public static Konto Erstellen(string bezeichnung, uint kontonummer) => new(bezeichnung, kontonummer);
 

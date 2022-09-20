@@ -1,8 +1,9 @@
 ﻿using OpenFibu.Domain.Shared.Enums;
+using OpenFibu.Shared;
 
-namespace OpenFibu.Domain.Entities.Journal;
+namespace OpenFibu.Domain.Journal.Entities;
 
-public class Buchung
+public class Buchung : Entity
 {
     public Buchung() { }
 

@@ -1,6 +1,6 @@
 using MediatR;
 using OpenFibu.Application.Interfaces;
-using OpenFibu.Domain.Entities.Journal;
+using OpenFibu.Domain.Journal.Entities;
 
 namespace OpenFibu.Application.UseCases;
 
@@ -9,17 +9,21 @@ public sealed record GeschaeftsvorfallBuchenCommand(string GeschaeftsvorfallId) 
 public sealed class GeschaeftsvorfallBuchenCommandHandler : IRequestHandler<GeschaeftsvorfallBuchenCommand>
 {
     private readonly IRepository<Geschaeftsvorfall> _repository;
+    private readonly IReadRepository<Geschaeftsvorfall> _readRepository;
 
-    public GeschaeftsvorfallBuchenCommandHandler(IRepository<Geschaeftsvorfall> repository)
-        => _repository = repository;
-
-
-    public Task<Unit> Handle(GeschaeftsvorfallBuchenCommand request, CancellationToken cancellationToken)
+    public GeschaeftsvorfallBuchenCommandHandler(IRepository<Geschaeftsvorfall> repository, IReadRepository<Geschaeftsvorfall> readRepository)
     {
-        var geschaeftsvorfall = _repository.Get(gv => gv.Id == request.GeschaeftsvorfallId);
+        _repository = repository;
+        _readRepository = readRepository;
+    }
+
+
+    public async Task<Unit> Handle(GeschaeftsvorfallBuchenCommand request, CancellationToken cancellationToken)
+    {
+        var geschaeftsvorfall = await _readRepository.GetByIdAsync(request.GeschaeftsvorfallId);
 
         geschaeftsvorfall.Buchen();
 
-        return Task.FromResult(Unit.Value);
+        return await Task.FromResult(Unit.Value);
     }
 }

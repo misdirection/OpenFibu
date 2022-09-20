@@ -1,9 +1,8 @@
 ﻿using MediatR;
 using OpenFibu.Application.DTO;
 using OpenFibu.Application.Interfaces;
-using OpenFibu.Domain.Journal.Entities;
-using OpenFibu.Domain.Shared.Enums;
 using OpenFibu.Domain.Stammdaten.Entities;
+using OpenFibu.Domain.Vorkontierung.Entities;
 
 namespace OpenFibu.Application.UseCases;
 
@@ -28,7 +27,7 @@ internal class VorkontierungErfassenCommandHandler : IRequestHandler<Vorkontieru
         //         kontierungszeile.SollHaben, steuerschluessel));
         // }
 
-        _repository.Add(vorkontierung);
+        await _repository.AddAsync(vorkontierung);
 
         return await Task.FromResult(vorkontierung.Id!);
     }

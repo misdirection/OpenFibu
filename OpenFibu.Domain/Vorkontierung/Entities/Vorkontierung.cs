@@ -1,6 +1,9 @@
-namespace OpenFibu.Domain.Journal.Entities;
+using System.Net.Http.Headers;
+using OpenFibu.Shared;
 
-public sealed class Vorkontierung
+namespace OpenFibu.Domain.Vorkontierung.Entities;
+
+public sealed class Vorkontierung : Entity, IAggregateRoot
 {
     public Vorkontierung(string laufendeNummer, string belegnummer, DateOnly belegdatum, DateOnly buchungsdatum, string? buchungstext)
     {

@@ -1,17 +1,17 @@
 ﻿using Ardalis.GuardClauses;
-using OpenFibu.Domain.Guards;
+using OpenFibu.Shared;
 
-namespace OpenFibu.Domain.Entities.Journal;
+namespace OpenFibu.Domain.Journal.Entities;
 
-public class Geschaeftsvorfall
+public class Geschaeftsvorfall : Entity, IAggregateRoot
 {
     public string? Id { get; set; }
+    
     public string LaufendeNummer { get; set; }
     public string Belegnummer { get; set; }
     public DateOnly Belegdatum { get; set; }
     public DateOnly Buchungsdatum { get; set; }
     public string? Buchungstext { get; set; }
-    public bool IstGebucht { get; set; } = false;
 
     public decimal Saldo { get; set; }
     public IReadOnlyCollection<Buchung> Buchungen => _buchungen;
@@ -36,10 +36,6 @@ public class Geschaeftsvorfall
     {
         Guard.Against.Zero(Saldo);
         Guard.Against.Zero(Buchungen.Count);
-        Guard.Against.IstGebucht(this);
-
-
-        IstGebucht = true;
     }
 
     public void BuchungHinzufuegen(Buchung buchung)

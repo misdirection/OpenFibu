@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using OpenFibu.Application.Interfaces;
-using OpenFibu.Domain.Entities;
+using OpenFibu.Domain.Stammdaten.Entities;
 
 namespace OpenFibu.Application.UseCases;
 
@@ -14,7 +14,7 @@ internal class ErstelleSteuerschluesselCommandHandler : IRequestHandler<Erstelle
     public async Task<Unit> Handle(ErstelleSteuerschluesselCommand request, CancellationToken cancellationToken)
     {
         var neuerSteuerschluessel = Steuerschluessel.Erstellen(request.Bezeichnung, request.Steuerkonto, request.Steuersatz);
-        _repository.Add(neuerSteuerschluessel);
+        await _repository.AddAsync(neuerSteuerschluessel);
         return await Task.FromResult(Unit.Value);
     }
 }
