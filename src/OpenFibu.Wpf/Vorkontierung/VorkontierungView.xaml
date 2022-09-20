@@ -21,6 +21,8 @@
             <Button Content="Buchen" Command="{Binding BuchenCommand}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
+            <Label Content="Lfd-Nummer" />
+            <TextBox Text="{Binding Vorkontierung.LaufendeNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Width="100" />
             <Label Content="Belegnummer" />
             <TextBox Text="{Binding Vorkontierung.Belegnummer, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="100" />
             <Label Content="Belegdatum" />
