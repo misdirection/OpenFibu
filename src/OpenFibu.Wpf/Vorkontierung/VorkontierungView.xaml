@@ -9,16 +9,13 @@
     <StackPanel>
         <DataGrid ItemsSource="{Binding Vorkontierungen}" AutoGenerateColumns="True" IsReadOnly="True" 
                   SelectedItem="{Binding Vorkontierung, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }"
+                  SelectedValue=""
                   SelectionMode="Single" SelectionUnit="FullRow" >
-            <!--<DataGrid.Columns>
-                <DataGridTextColumn Header="Belegnummer" Binding="{Binding Belegnummer}" />
-                <DataGridTextColumn Header="Belegdatum" Binding="{Binding Belegdatum}" />
-                <DataGridTextColumn Header="Buchungsdatum" Binding="{Binding Buchungsdatum}" />
-            </DataGrid.Columns>-->
         </DataGrid>
         <StackPanel Orientation="Horizontal">
-            <Button Content="Speichern" Command="{Binding SpeichernCommand}"/>
-            <Button Content="Buchen" Command="{Binding BuchenCommand}"/>
+            <Button Margin="5" Content="Speichern" Command="{Binding Vorkontierung.SpeichernCommand}"/>
+            <Button Margin="5" Content="Neue Vorkontierung" Command="{Binding NeuCommand}"/>
+            <Button Margin="5" Content="Buchen" Command="{Binding BuchenCommand}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Lfd-Nummer" />
@@ -32,11 +29,11 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Width="130" Content="Soll" />
-            <TextBox Text="{Binding Soll, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="100" />
+            <TextBox Text="{Binding Vorkontierung.Sollkontobezeichnung, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="100" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Width="130" Content="Haben" />
-            <TextBox Text="{Binding Haben, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="100" />
+            <TextBox Text="{Binding Vorkontierung.Habenkontobezeichnung, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="100" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Width="130" Content="Steuerschlüssel" />
@@ -44,11 +41,11 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Width="130" Content="Betrag" />
-            <TextBox Text="{Binding Betrag, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="100" />
+            <TextBox Text="{Binding Vorkontierung.Betrag, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="100" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Width="130" Content="Buchungstext" />
-            <TextBox Text="{Binding Buchungstext, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="450" />
+            <TextBox Text="{Binding Vorkontierung.Buchungstext, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Width="450" />
         </StackPanel>
     </StackPanel>
 </UserControl>

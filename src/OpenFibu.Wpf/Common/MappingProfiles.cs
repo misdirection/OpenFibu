@@ -25,9 +25,9 @@ public class MappingProfiles : Profile
     }
 }
 
-public class DateTimeTypeConverter : IValueConverter<DateOnly, DateTime?>
+public class DateTimeTypeConverter : IValueConverter<DateOnly, DateTime>
 {
-    public DateTime? Convert(DateOnly sourceMember, ResolutionContext context)
+    public DateTime Convert(DateOnly sourceMember, ResolutionContext context)
     {
         return sourceMember.ToDateTime(TimeOnly.MinValue);
     }
