@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace OpenFibu.API;
 
+[ExcludeFromCodeCoverage(Justification = "We dont test startup classes")]
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)

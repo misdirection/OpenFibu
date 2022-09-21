@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace OpenFibu.API;
 
-[ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage(Justification = "We dont test startup classes")]
 public class Program
 {
     protected Program()
@@ -13,18 +13,9 @@ public class Program
     {
         var configuration = BuildConfiguration();
 
-
         var host = CreateHostBuilder(args, configuration).Build();
 
-
-        try
-        {
-            await host.RunAsync();
-        }
-        catch (Exception e)
-        {
-            throw;
-        }
+        await host.RunAsync();
     }
 
     private static IHostBuilder CreateHostBuilder(string[] args, IConfiguration configuration)
