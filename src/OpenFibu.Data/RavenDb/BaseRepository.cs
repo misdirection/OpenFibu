@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace OpenFibu.Data.RavenDb;
 
-public class BaseRepository<T> : IReadRepository<T>, IRepository<T> where T : Entity
+public abstract class BaseRepository<T> : IReadRepository<T>, IRepository<T> where T : IAggregateRoot
 {
     public virtual async Task<T> GetByIdAsync(string id)
     {
@@ -39,16 +39,7 @@ public class BaseRepository<T> : IReadRepository<T>, IRepository<T> where T : En
         await Task.CompletedTask;
     }
 
-    public virtual async Task UpdateAsync(T entity)
-    {
-        //kp obs so geht
-        using var session = DocumentStoreHolder.Store.OpenSession();
-        var t = session.Load<T>(entity.Id);
-        t = entity;
-        session.SaveChanges();
-        await Task.CompletedTask;
-    }
-
+    public abstract Task UpdateAsync(T entity);
     public virtual async Task DeleteAsync(T entity)
     {
         using var session = DocumentStoreHolder.Store.OpenSession();

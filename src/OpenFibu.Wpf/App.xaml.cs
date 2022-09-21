@@ -39,11 +39,21 @@ public partial class App : System.Windows.Application
     private static IServiceProvider ConfigureServices()
     {
         var services = new ServiceCollection();
-        services.AddSingleton<IRepository<Geschaeftsvorfall>, BaseRepository<Geschaeftsvorfall>>();
-        services.AddSingleton<IReadRepository<Geschaeftsvorfall>, BaseRepository<Geschaeftsvorfall>>();
-        services.AddTransient<IRepository<Steuerschluessel>, BaseRepository<Steuerschluessel>>();
-        services.AddTransient<IRepository<Domain.Vorkontierung.Entities.Vorkontierung>, VorkontierungsRepository>();
-        services.AddTransient<IReadRepository<Domain.Vorkontierung.Entities.Vorkontierung>, VorkontierungsRepository>();
+        
+        //Mocks
+        // services.AddSingleton<IRepository<Geschaeftsvorfall>, BaseMockRepository<Geschaeftsvorfall>>();
+        // services.AddSingleton<IReadRepository<Geschaeftsvorfall>, BaseMockRepository<Geschaeftsvorfall>>();
+        // services.AddSingleton<IRepository<Steuerschluessel>, BaseMockRepository<Steuerschluessel>>();
+        // services.AddSingleton<IReadRepository<Steuerschluessel>, BaseMockRepository<Steuerschluessel>>();
+        // services.AddSingleton<IRepository<Domain.Vorkontierung.Entities.Vorkontierung> , BaseMockRepository<Domain.Vorkontierung.Entities.Vorkontierung>>();
+        // services.AddSingleton<IReadRepository<Domain.Vorkontierung.Entities.Vorkontierung>, BaseMockRepository<Domain.Vorkontierung.Entities.Vorkontierung>>();   
+        
+        services.AddTransient<IRepository<Geschaeftsvorfall>,GeschaeftsvorfallRepository>();
+        services.AddSingleton<IReadRepository<Geschaeftsvorfall>, GeschaeftsvorfallRepository>();
+        services.AddSingleton<IRepository<Steuerschluessel>, SteuerschluesselRepository>();
+        services.AddSingleton<IReadRepository<Steuerschluessel>, SteuerschluesselRepository>();
+        services.AddSingleton<IRepository<Domain.Vorkontierung.Entities.Vorkontierung> , VorkontierungsRepository>();
+        services.AddSingleton<IReadRepository<Domain.Vorkontierung.Entities.Vorkontierung>, VorkontierungsRepository>();
 
         services.AddMediatR(typeof(GetAllSteuerschluesselQuery));
         services.AddAutoMapper(typeof(MappingProfiles));
