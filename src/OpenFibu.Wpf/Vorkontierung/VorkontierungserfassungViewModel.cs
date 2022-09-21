@@ -32,7 +32,14 @@ public partial class VorkontierungserfassungViewModel : ObservableObject
             var vkVm = _mapper.Map<VorkontierungViewModel>(vk);
             Vorkontierungen.Add(vkVm);
         }
-        Vorkontierung = Vorkontierungen.First();
+
+        if (Vorkontierungen.Any())
+            Vorkontierung = Vorkontierungen.FirstOrDefault()!;
+        else
+        {
+            Vorkontierung = new VorkontierungViewModel(_mediator,_mapper);
+            Vorkontierungen.Add(Vorkontierung);
+        }
     }
 
     
