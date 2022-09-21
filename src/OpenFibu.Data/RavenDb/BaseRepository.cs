@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Linq.Expressions;
 using OpenFibu.Application.Interfaces;
-using OpenFibu.Domain.Journal.Entities;
 using OpenFibu.Shared;
 using Raven.Client.Documents;
-using Raven.Client.Documents.Linq;
+using System.Linq.Expressions;
 
 namespace OpenFibu.Data.RavenDb;
 

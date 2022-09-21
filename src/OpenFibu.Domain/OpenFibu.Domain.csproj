@@ -7,16 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Ardalis.GuardClauses" Version="4.0.1"/>
+        <PackageReference Include="Ardalis.GuardClauses" Version="4.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Guards"/>
-        <Folder Include="Stammdaten"/>
+        <Folder Include="Guards" />
+        <Folder Include="Shared\ValueObjects\" />
+        <Folder Include="Stammdaten" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\OpenFibu.Shared\OpenFibu.Shared.csproj"/>
+        <ProjectReference Include="..\OpenFibu.Shared\OpenFibu.Shared.csproj" />
     </ItemGroup>
 
 </Project>

@@ -23,6 +23,7 @@ public class GetVorkontierungenQueryHandler : IRequestHandler<GetVorkontierungen
             vorkontierung => new VorkontierungsDto()
             {
                 Id = vorkontierung.Id,
+                LaufendeNummer = vorkontierung.LaufendeNummer,
                 Belegnummer = vorkontierung.Belegnummer,
                 Buchungsdatum = vorkontierung.Buchungsdatum,
                 Belegdatum = vorkontierung.Belegdatum,
