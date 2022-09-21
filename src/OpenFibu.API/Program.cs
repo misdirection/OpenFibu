@@ -1,25 +1,44 @@
-var builder = WebApplication.CreateBuilder(args);
+using System.Diagnostics.CodeAnalysis;
 
-// Add services to the container.
+namespace OpenFibu.API;
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+[ExcludeFromCodeCoverage(Justification = "We dont test startup classes")]
+public class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    protected Program()
+    {
+    }
+
+    public static async Task Main(string[] args)
+    {
+        var configuration = BuildConfiguration();
+
+        var host = CreateHostBuilder(args, configuration).Build();
+
+        await host.RunAsync();
+    }
+
+    private static IHostBuilder CreateHostBuilder(string[] args, IConfiguration configuration)
+    {
+        return Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseConfiguration(configuration);
+                }
+            );
+    }
+
+    private static IConfiguration BuildConfiguration()
+    {
+        var configurationBuilder = new ConfigurationBuilder();
+
+        configurationBuilder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+        configurationBuilder.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true);
+
+        configurationBuilder.AddUserSecrets<Startup>();
+        configurationBuilder.AddEnvironmentVariables();
+
+        return configurationBuilder.Build();
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

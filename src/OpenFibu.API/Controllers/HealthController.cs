@@ -10,5 +10,5 @@ public class HealthController : ControllerBase
 {
     [HttpGet]
     [AllowAnonymous]
-    public ActionResult<AppInfoResponse> GetAppInfo() => Ok(new HealthResponse());
+    public ActionResult<AppInfoResponse> GetHealth() => Ok(new HealthResponse());
 }
