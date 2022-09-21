@@ -1,6 +1,8 @@
-﻿namespace OpenFibu.Application.Interfaces;
+﻿using OpenFibu.Shared;
 
-public interface IRepository<in T> where T : class
+namespace OpenFibu.Application.Interfaces;
+
+public interface IRepository<in T> where T : IAggregateRoot
 {
     Task AddAsync(T entity);
     Task UpdateAsync(T entity);
