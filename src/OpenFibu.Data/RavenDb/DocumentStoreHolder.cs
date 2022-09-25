@@ -8,6 +8,7 @@ using Raven.Client.ServerWide.Operations;
 
 namespace OpenFibu.Data.RavenDb;
 
+[Obsolete("Configure DI and use injection of IAsyncDocumentSession instead")]
 public class DocumentStoreHolder
 {
     private static readonly Lazy<IDocumentStore> _store = new(CreateDocumentStore);
