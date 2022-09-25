@@ -1,6 +1,11 @@
 using OpenFibu.Data.RavenDb.Configuration;
 using Raven.Client.Documents;
+using Raven.Client.Documents.Operations;
 using Raven.Client.Documents.Session;
+using Raven.Client.Exceptions;
+using Raven.Client.Exceptions.Database;
+using Raven.Client.ServerWide;
+using Raven.Client.ServerWide.Operations;
 
 namespace OpenFibu.API.StartupExtensions;
 
@@ -16,6 +21,36 @@ public static class DocumentStoreInitializer
             Database = settings.DatabaseName
         });
 
-        services.AddScoped<IAsyncDocumentSession>(serviceProvider => serviceProvider.GetService<IDocumentStore>()!.OpenAsyncSession());
+        EnsureCreation(services, settings);
+
+        services.AddScoped<IAsyncDocumentSession>(serviceProvider =>
+        {
+            var docStore = serviceProvider.GetService<IDocumentStore>();
+
+            docStore!.Initialize();
+
+            return docStore.OpenAsyncSession();
+        });
+    }
+
+    private static void EnsureCreation(IServiceCollection services, DocumentStoreSettings settings)
+    {
+        var serviceProvider = services.BuildServiceProvider();
+        var docStore = serviceProvider.GetService<IDocumentStore>()!;
+
+        try
+        {
+            docStore.Maintenance.ForDatabase(settings.DatabaseName).Send(new GetStatisticsOperation());
+        }
+        catch (DatabaseDoesNotExistException)
+        {
+            try
+            {
+                docStore.Maintenance.Server.Send(new CreateDatabaseOperation(new DatabaseRecord(settings.DatabaseName)));
+            }
+            catch (ConcurrencyException)
+            {
+            }
+        }
     }
 }
