@@ -5,6 +5,7 @@ using OpenFibu.Application.DTO;
 using OpenFibu.Application.Queries;
 using OpenFibu.Application.UseCases;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace OpenFibu.Wpf.Stammdaten;
 
@@ -23,7 +24,13 @@ public partial class SteuerschluesselViewModel : ObservableObject
     public SteuerschluesselViewModel(IMediator mediator)
     {
         _mediator = mediator;
-        _steuerschluessel = new(_mediator.Send(new GetAllSteuerschluesselQuery()).Result);
+        _ = Load();
+    }
+
+    public async Task Load()
+    {
+        var result = await _mediator.Send(new GetAllSteuerschluesselQuery());
+        _steuerschluessel = result is null ?new() : new(result);
     }
 
     [RelayCommand]

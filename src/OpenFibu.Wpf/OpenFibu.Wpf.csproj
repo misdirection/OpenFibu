@@ -8,17 +8,29 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="11.0.1"/>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0"/>
-        <PackageReference Include="MediatR" Version="10.0.1"/>
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
+      <None Remove="appsettings.json" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\OpenFibu.Application\OpenFibu.Application.csproj"/>
-        <ProjectReference Include="..\OpenFibu.Data\OpenFibu.Data.csproj"/>
+      <Content Include="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="11.0.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+        <PackageReference Include="MediatR" Version="10.0.1" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\OpenFibu.Application\OpenFibu.Application.csproj" />
+        <ProjectReference Include="..\OpenFibu.Data\OpenFibu.Data.csproj" />
     </ItemGroup>
 
 </Project>
